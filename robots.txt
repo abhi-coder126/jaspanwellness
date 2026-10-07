@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin.php
+Disallow: /api/
+Disallow: /data/
+
+Sitemap: https://jaspanrehab.com/sitemap.xml
+

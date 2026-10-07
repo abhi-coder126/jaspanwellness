@@ -1,0 +1,26 @@
+# Apache configuration for Jaspan Physical Therapy & Rehabilitation Institute
+
+Options -Indexes
+DirectoryIndex index.php index.html
+
+# Prevent direct access to SQLite database and data directory
+<FilesMatch "\.(sqlite|json|log)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Protect data directory
+    RewriteRule ^data/ - [F,L]
+
+    # Security Headers
+    <IfModule mod_headers.c>
+        Header set X-Content-Type-Options "nosniff"
+        Header set X-Frame-Options "SAMEORIGIN"
+        Header set X-XSS-Protection "1; mode=block"
+        Header set Referrer-Policy "strict-origin-when-cross-origin"
+    </IfModule>
+</IfModule>
+
